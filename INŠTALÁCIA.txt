@@ -1,0 +1,134 @@
+================================================================
+  opravimto.sk – Inštalačné pokyny
+================================================================
+
+POŽIADAVKY NA SERVER
+--------------------
+- PHP 8.1 alebo novší
+- MySQL 5.7+ alebo MariaDB 10.4+
+- Apache s mod_rewrite (alebo Nginx)
+- Prístup k phpMyAdmin alebo MySQL konzoli
+
+
+KROK 1 – Stiahnuť projekt z Gitu
+---------------------------------
+Prihláste sa na server (SSH alebo file manager) a spustite:
+
+    git clone https://github.com/jurajkurek25/opravimto.git
+
+Alebo stiahnite ZIP cez GitHub → Code → Download ZIP
+a rozbaľte na server.
+
+
+KROK 2 – Nastaviť document root
+---------------------------------
+Document root (webroot) musí ukazovať na priečinok:
+
+    /opravimto/public/
+
+V cPanel: Home Directory → Public HTML → nastavte na /public/
+Na VPS v Apache (/etc/apache2/sites-available/opravimto.conf):
+
+    <VirtualHost *:80>
+        ServerName vasadomena.sk
+        DocumentRoot /var/www/opravimto/public
+        <Directory /var/www/opravimto/public>
+            AllowOverride All
+            Require all granted
+        </Directory>
+    </VirtualHost>
+
+Na VPS v Nginx:
+
+    root /var/www/opravimto/public;
+    index index.php;
+    location / { try_files $uri $uri/ /index.php?$query_string; }
+    location ~ \.php$ { fastcgi_pass unix:/run/php/php8.1-fpm.sock; include fastcgi_params; }
+
+
+KROK 3 – Vytvoriť databázu
+---------------------------------
+1. Prihláste sa do phpMyAdmin (alebo MySQL konzoly)
+2. Vytvorte novú databázu s názvom:
+
+       opravimto
+
+   Kódovanie: utf8mb4_unicode_ci
+
+3. Vytvorte MySQL používateľa a priraďte mu všetky práva
+   na databázu opravimto.
+
+
+KROK 4 – Nastaviť prihlásenie k databáze
+---------------------------------
+Otvorte súbor:
+
+    /opravimto/config/db.php
+
+Upravte tieto hodnoty:
+
+    define('DB_HOST', 'localhost');     ← zvyčajne localhost
+    define('DB_NAME', 'opravimto');    ← názov databázy z kroku 3
+    define('DB_USER', 'vas_user');     ← MySQL používateľ
+    define('DB_PASS', 'vas_heslo');    ← MySQL heslo
+
+
+KROK 5 – Nainštalovať databázové tabuľky
+---------------------------------
+V prehliadači otvorte:
+
+    https://vasadomena.sk/setup.php
+
+Stránka automaticky vytvorí všetky tabuľky a vloží vzorové dáta.
+Po úspešnom dokončení VYMAŽTE súbor setup.php:
+
+    /opravimto/public/setup.php
+
+
+KROK 6 – Prihlasovacie údaje
+---------------------------------
+Admin panel (https://vasadomena.sk/admin/login.php):
+
+    E-mail:  admin@opravimto.sk
+    Heslo:   Admin123!
+
+!! Po prvom prihlásení heslo zmeňte !!
+(Nové heslo zmeňte priamo v databáze cez phpMyAdmin –
+tabuľka "admini", stĺpec "heslo", použite bcrypt hash)
+
+
+PREHĽAD STRÁNOK
+---------------------------------
+    /                        Domovská stránka
+    /rezervacia.php          Formulár rezervácie opravy
+    /stav.php                Sledovanie stavu opravy (verejné)
+    /prihlasenie.php         Prihlásenie / registrácia zákazníka
+    /moj-ucet.php            Dashboard zákazníka
+    /potvrdenie.php          Potvrdenie objednávky
+    /admin/login.php         Prihlásenie do admin panelu
+    /admin/index.php         Správa objednávok
+    /admin/objednavka.php    Detail a editácia objednávky
+
+
+RIEŠENIE PROBLÉMOV
+---------------------------------
+Stránka vracia 403/404:
+  → Skontrolujte či document root ukazuje na /public/
+  → Skontrolujte či je povolený mod_rewrite (Apache)
+
+Chyba pripojenia k databáze:
+  → Skontrolujte údaje v config/db.php
+  → Overte či MySQL bežI a databáza existuje
+
+PHP chyby:
+  → Zapnite error_reporting v php.ini alebo pridajte na začiatok
+    index.php: error_reporting(E_ALL); ini_set('display_errors',1);
+
+Session nefunguje:
+  → Overte write práva na /tmp alebo nastavte session.save_path
+    v php.ini
+
+
+================================================================
+  Technická podpora: opravimto.sk
+================================================================
