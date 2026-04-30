@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Customer Dashboard - opravmito.sk</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-secondary": "#482a00",
+                        "tertiary-container": "#f95b4c",
+                        "on-primary": "#003738",
+                        "on-tertiary": "#690003",
+                        "inverse-primary": "#00696b",
+                        "inverse-surface": "#e8e0e6",
+                        "on-secondary-fixed-variant": "#663e00",
+                        "secondary-fixed-dim": "#ffb964",
+                        "tertiary": "#ffb4aa",
+                        "on-primary-fixed-variant": "#004f51",
+                        "inverse-on-surface": "#332f34",
+                        "on-primary-container": "#002f30",
+                        "surface-container-low": "#1e1a1f",
+                        "surface-container-lowest": "#100d11",
+                        "surface-dim": "#161216",
+                        "tertiary-fixed-dim": "#ffb4aa",
+                        "primary-fixed-dim": "#72d6d8",
+                        "on-background": "#e8e0e6",
+                        "on-surface-variant": "#bdc9c9",
+                        "on-surface": "#e8e0e6",
+                        "secondary-container": "#cc8004",
+                        "primary-fixed": "#8ff3f4",
+                        "outline-variant": "#3d4949",
+                        "secondary": "#ffb964",
+                        "primary": "#72d6d8",
+                        "secondary-fixed": "#ffddba",
+                        "error": "#ffb4ab",
+                        "surface-container": "#221e23",
+                        "on-tertiary-fixed-variant": "#910b0b",
+                        "surface-bright": "#3c383d",
+                        "on-error-container": "#ffdad6",
+                        "surface-variant": "#383338",
+                        "on-tertiary-fixed": "#410001",
+                        "error-container": "#93000a",
+                        "on-tertiary-container": "#5c0002",
+                        "background": "#161216",
+                        "on-primary-fixed": "#002020",
+                        "outline": "#879393",
+                        "surface-container-high": "#2d292d",
+                        "surface": "#161216",
+                        "on-secondary-fixed": "#2b1700",
+                        "primary-container": "#339fa1",
+                        "on-error": "#690005",
+                        "surface-container-highest": "#383338",
+                        "on-secondary-container": "#3e2400",
+                        "surface-tint": "#72d6d8",
+                        "tertiary-fixed": "#ffdad5"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "xs": "4px",
+                        "gutter": "24px",
+                        "base": "8px",
+                        "sm": "12px",
+                        "xl": "80px",
+                        "lg": "48px",
+                        "margin": "32px",
+                        "md": "24px"
+                    },
+                    "fontFamily": {
+                        "h1": ["Inter"],
+                        "body-md": ["Inter"],
+                        "label-sm": ["Inter"],
+                        "h3": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "label-md": ["Inter"],
+                        "h2": ["Inter"]
+                    },
+                    "fontSize": {
+                        "h1": ["48px", { "lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "body-md": ["16px", { "lineHeight": "1.5", "letterSpacing": "0", "fontWeight": "400" }],
+                        "label-sm": ["12px", { "lineHeight": "1.1", "letterSpacing": "0.05em", "fontWeight": "600" }],
+                        "h3": ["24px", { "lineHeight": "1.3", "letterSpacing": "0", "fontWeight": "600" }],
+                        "body-lg": ["18px", { "lineHeight": "1.6", "letterSpacing": "0", "fontWeight": "400" }],
+                        "label-md": ["14px", { "lineHeight": "1.2", "letterSpacing": "0.02em", "fontWeight": "500" }],
+                        "h2": ["32px", { "lineHeight": "1.2", "letterSpacing": "-0.01em", "fontWeight": "600" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; }
+    </style>
+</head>
+<body class="bg-background text-on-background min-h-screen flex selection:bg-primary selection:text-on-primary"><nav class="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-md border-b border-outline-variant px-margin py-4 flex items-center justify-between">
+<div class="flex items-center">
+<span class="text-primary font-h3 text-h3 tracking-tight">opravmito.sk</span>
+</div>
+<div class="hidden md:flex items-center gap-lg">
+<a class="font-label-md text-on-surface hover:text-primary transition-colors" href="#">Repair Shop</a>
+<a class="font-label-md text-primary transition-colors" href="#">Status</a>
+<a class="font-label-md text-on-surface hover:text-primary transition-colors" href="#">Pricing</a>
+<a class="font-label-md text-on-surface hover:text-primary transition-colors" href="#">About</a>
+</div>
+<div class="flex items-center gap-md">
+<button class="bg-primary text-on-primary font-label-md px-6 py-2 rounded-full hover:bg-primary-fixed transition-all shadow-lg shadow-primary/10">
+            Book Repair
+        </button>
+<div class="flex items-center gap-sm">
+<button class="p-2 text-on-surface-variant hover:text-primary transition-colors relative">
+<span class="material-symbols-outlined">notifications</span>
+<span class="absolute top-1.5 right-1.5 w-2 h-2 bg-secondary rounded-full border-2 border-background"></span>
+</button>
+<button class="p-2 text-on-surface-variant hover:text-primary transition-colors">
+<span class="material-symbols-outlined">account_circle</span>
+</button>
+</div>
+</div>
+</nav>
+<main class="flex-1 p-margin xl:px-xl pt-24">
+<div class="grid grid-cols-1 md:grid-cols-12 gap-gutter">
+<div class="md:col-span-8 bg-surface-container border border-outline-variant rounded-xl p-lg relative overflow-hidden flex flex-col justify-between min-h-[400px]">
+<div class="absolute top-md right-md bg-error-container/20 border border-error text-error font-label-sm text-label-sm px-3 py-1 rounded-full flex items-center gap-1 z-10 backdrop-blur-md">
+<span class="material-symbols-outlined text-[14px]">warning</span>
+                    Priority: High
+                </div>
+<div class="flex gap-6 items-start relative z-10 mb-8">
+<div class="w-32 h-32 rounded-lg bg-surface-variant border border-outline-variant overflow-hidden shrink-0">
+<img alt="Laptop repair" class="w-full h-full object-cover mix-blend-luminosity opacity-80" data-alt="A close-up, high-resolution shot of a modern laptop motherboard partially disassembled on an anti-static mat. The lighting is clinical and bright, emphasizing precision and technical expertise. The scene is lit with cool white light, casting subtle shadows to highlight the intricate electronic components. The overall aesthetic perfectly matches a premium, high-tech hardware clinic with deep, engineered color tones." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDH-5l0MHe0Y0OVN3A8fnWWzMMfOjcpu2ohPXD74S12qXvmv57g0AxbaoS3YufdmYqGoih-DKbLFcsEAZ8czwysz8pb2kdENILuAKd-rqHn8vNtUPTXbtXPU2bQxqYuNQvmgK5K9KGLyqKaJmohtBzGmV5DZb_bf3i1VGdxw06gGREdpvHmkyMuCYXI4gTUg-30OVyP8q7vX0rpvQSxA1z7Nujg6RHE2Nf6raEVOcbv8VOppRKlpvrFfOE0z9gUlTbQU-uyn9qYo7Nk"/>
+</div>
+<div>
+<h2 class="font-h2 text-h2 text-on-surface mb-1">MacBook Pro 16" (2021)</h2>
+<p class="font-body-md text-body-md text-on-surface-variant mb-4">Ticket ID: #REP-8492-MK</p>
+<p class="font-label-md text-label-md text-secondary-fixed-dim bg-surface-container-highest inline-block px-3 py-1 rounded">Issue: Logic Board Power Failure</p>
+</div>
+</div>
+<div class="relative z-10 mt-auto w-full px-4">
+<div class="flex justify-between mb-2">
+<span class="font-label-sm text-label-sm text-primary">Received</span>
+<span class="font-label-sm text-label-sm text-secondary">Diagnosing</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Repairing</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Testing</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Ready</span>
+</div>
+<div class="relative flex items-center justify-between">
+<div class="absolute left-0 top-1/2 -translate-y-1/2 w-full h-[2px] bg-outline-variant -z-10"></div>
+<div class="w-6 h-6 rounded-full bg-primary flex items-center justify-center shadow-[0_0_10px_rgba(114,214,216,0.3)]">
+<span class="material-symbols-outlined text-[14px] text-on-primary">check</span>
+</div>
+<div class="w-6 h-6 rounded-full bg-secondary-container border-2 border-secondary flex items-center justify-center animate-pulse shadow-[0_0_15px_rgba(204,128,4,0.4)]">
+<span class="w-2 h-2 rounded-full bg-secondary"></span>
+</div>
+<div class="w-6 h-6 rounded-full bg-surface-variant border border-outline flex items-center justify-center"></div>
+<div class="w-6 h-6 rounded-full bg-surface-variant border border-outline flex items-center justify-center"></div>
+<div class="w-6 h-6 rounded-full bg-surface-variant border border-outline flex items-center justify-center"></div>
+</div>
+<div class="mt-4 bg-surface-variant/50 p-3 rounded text-center border border-outline-variant/50">
+<p class="font-body-md text-body-md text-on-surface">Technician is currently analyzing power rails on the mainboard.</p>
+</div>
+</div>
+</div>
+<div class="md:col-span-4 bg-surface-container-high border border-outline-variant rounded-xl p-md flex flex-col">
+<div class="flex items-center gap-3 mb-6 border-b border-outline-variant pb-4">
+<div class="w-10 h-10 rounded-full bg-primary-container text-on-primary-container flex items-center justify-center">
+<span class="material-symbols-outlined">support_agent</span>
+</div>
+<div>
+<h3 class="font-label-md text-label-md text-on-surface font-bold">Tech Support</h3>
+<p class="font-label-sm text-label-sm text-primary">Online</p>
+</div>
+</div>
+<div class="flex-1 overflow-y-auto mb-4 flex flex-col gap-4">
+<div class="bg-surface-container-lowest border border-outline-variant p-3 rounded-lg rounded-tl-none self-start max-w-[90%]">
+<p class="font-body-md text-body-md text-on-surface text-sm">Hello. We've disassembled your MacBook. We found slight liquid residue near the power management IC.</p>
+<span class="font-label-sm text-label-sm text-on-surface-variant mt-2 block text-right">10:42 AM</span>
+</div>
+</div>
+<div class="mt-auto">
+<div class="flex gap-2">
+<input class="flex-1 bg-surface-container border border-outline-variant rounded p-2 font-body-md text-body-md text-on-surface focus:outline-none focus:border-primary transition-colors" placeholder="Type a message..." type="text"/>
+<button class="bg-primary text-on-primary px-4 rounded hover:bg-primary-fixed transition-colors flex items-center justify-center">
+<span class="material-symbols-outlined text-[18px]">send</span>
+</button>
+</div>
+</div>
+</div>
+<div class="md:col-span-8 bg-surface-container border border-outline-variant rounded-xl p-md">
+<div class="flex justify-between items-center mb-6">
+<h3 class="font-h3 text-h3 text-on-surface">Recent Orders</h3>
+<button class="font-label-md text-label-md text-primary hover:text-primary-fixed transition-colors flex items-center gap-1">
+                        View All <span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+</button>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="border-b border-outline-variant">
+<th class="font-label-sm text-label-sm text-on-surface-variant pb-3 font-semibold uppercase tracking-wider">Order ID</th>
+<th class="font-label-sm text-label-sm text-on-surface-variant pb-3 font-semibold uppercase tracking-wider">Device</th>
+<th class="font-label-sm text-label-sm text-on-surface-variant pb-3 font-semibold uppercase tracking-wider">Date</th>
+<th class="font-label-sm text-label-sm text-on-surface-variant pb-3 font-semibold uppercase tracking-wider">Status</th>
+</tr>
+</thead>
+<tbody class="font-body-md text-body-md">
+<tr class="border-b border-outline-variant/50 hover:bg-surface-container-high transition-colors">
+<td class="py-4 text-on-surface">#REP-8492-MK</td>
+<td class="py-4 text-on-surface">MacBook Pro 16"</td>
+<td class="py-4 text-on-surface-variant">Oct 24, 2023</td>
+<td class="py-4">
+<span class="bg-secondary-container/20 border border-secondary-container text-secondary font-label-sm text-label-sm px-2 py-1 rounded">Diagnosing</span>
+</td>
+</tr>
+<tr class="border-b border-outline-variant/50 hover:bg-surface-container-high transition-colors">
+<td class="py-4 text-on-surface">#REP-7102-IP</td>
+<td class="py-4 text-on-surface">iPhone 13 Pro</td>
+<td class="py-4 text-on-surface-variant">Sep 12, 2023</td>
+<td class="py-4">
+<span class="bg-primary-container/20 border border-primary-container text-primary font-label-sm text-label-sm px-2 py-1 rounded">Completed</span>
+</td>
+</tr>
+<tr class="hover:bg-surface-container-high transition-colors">
+<td class="py-4 text-on-surface">#REP-6599-SW</td>
+<td class="py-4 text-on-surface">Nintendo Switch</td>
+<td class="py-4 text-on-surface-variant">Jul 05, 2023</td>
+<td class="py-4">
+<span class="bg-primary-container/20 border border-primary-container text-primary font-label-sm text-label-sm px-2 py-1 rounded">Completed</span>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="md:col-span-4 bg-surface-container border border-outline-variant rounded-xl p-md flex flex-col justify-between">
+<div>
+<h3 class="font-h3 text-h3 text-on-surface mb-6 flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">account_circle</span> Account Setup
+                    </h3>
+<div class="space-y-4">
+<div class="bg-surface-container-low p-3 rounded border border-outline-variant/50 flex justify-between items-center">
+<div>
+<p class="font-label-sm text-label-sm text-on-surface-variant">Full Name</p>
+<p class="font-body-md text-body-md text-on-surface">Jozef Novak</p>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant text-[18px]">edit</span>
+</div>
+<div class="bg-surface-container-low p-3 rounded border border-outline-variant/50 flex justify-between items-center">
+<div>
+<p class="font-label-sm text-label-sm text-on-surface-variant">Email</p>
+<p class="font-body-md text-body-md text-on-surface">j.novak@example.sk</p>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant text-[18px]">edit</span>
+</div>
+<div class="bg-surface-container-low p-3 rounded border border-outline-variant/50 flex justify-between items-center">
+<div>
+<p class="font-label-sm text-label-sm text-on-surface-variant">Payment Method</p>
+<p class="font-body-md text-body-md text-on-surface">•••• 4242</p>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant text-[18px]">credit_card</span>
+</div>
+</div>
+</div>
+<button class="w-full mt-6 border border-primary text-primary hover:bg-primary hover:text-on-primary font-label-md text-label-md py-2 rounded transition-colors">
+                    Manage Settings
+                </button>
+</div>
+</div>
+</main>
+</body></html>
